@@ -1,0 +1,42 @@
+<?php
+
+
+function prime_string($string){
+    $len = strlen($string);
+    $ch = $string[0];
+    $count = 0;
+    $string_new = $string;
+    $ch_arr = array();
+    for($j = 0; $j<$len; $j++){
+        for($i=0; $i<$len; $i++){
+            if($ch == $string[$i]){
+                $count++;
+                array_push($ch_arr, $ch);
+            }
+        }
+
+        $is_prime = is_prime($count);
+        if($is_prime){
+            $string_new = str_replace($ch, "", $string_new);
+        }
+        $count = 0;
+        $ch = $string[$j+1];
+    }
+    if($string_new == "") return "MARY";
+    return $string_new;
+}
+
+function is_prime($num){
+    if ($num == 1)
+        return 0;
+    for ($i = 2; $i <= $num/2; $i++)
+    {
+        if ($num % $i == 0)
+            return 0;
+    }
+    return 1;
+}
+
+
+
+echo (prime_string("ababbcdddddddccc"));
